@@ -1,0 +1,44 @@
+
+root_dir: "/lmsignatures"
+feat_dir: "/lmsignatures/data/spn/images"
+pbb_dir: "/lmsignatures/data/spn/bbox"
+labels: "/lmsignatures/data/spn/spn_signatures.csv"
+codes: null
+icd10_embedding: null
+pretrained_mae: null
+pretrained_model: "/lmsignatures/models/tdsig_imageehr/best_model.pth"
+
+dataset: 'PaddedLongICADataset'
+
+random_seed: 1106
+val_fraction: 0.15
+checkpoint: null
+topk: 5
+time_length: 2
+
+# Model Params
+freeze_img_emb: False # freeze nodule embedding
+freeze_ehr_emb: False # freeze ica embeddings
+model_class: "IcaRoiTD"
+feat_dim: 320
+code_dim: 2000
+time_enc: "AbsTimeEncoding"
+embedding_dim: 320
+dim_head: 64
+depth: 4
+heads: 4
+mlp_dim: 124
+qkv_bias: False
+dropout: 0.1
+
+# Pretraining params
+batch_size: 25
+epochs: 3000
+lr: 0.00000001 # peak learning rate
+schedule: "Cosine"
+warmup_steps: 200
+val_interval: 5
+
+checkpoint_interval: 20
+stop_agg: 500
+stop_delta: 0.2
