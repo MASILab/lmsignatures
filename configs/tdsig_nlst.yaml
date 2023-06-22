@@ -1,4 +1,4 @@
-# training on NLST scans with nodules only
+# Example of config file for pretraining on NLST without EHR data
 
 root_dir: "/lmsignatures"
 feat_dir: "/lmsignatures/data/nlst/images/"

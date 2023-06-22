@@ -20,7 +20,7 @@ from monai.transforms import ToTensor
 
 from utils import seed_everything, load_config, EarlyStopper, ConstantLRSchedule, WarmupConstantSchedule, WarmupLinearSchedule, WarmupCosineSchedule
 from datasets import PaddedLongNLSTDataset, PaddedLongC2VDataset, PaddedLongICADataset
-from TDEncoder import FeatViT, ICAFeatViT, MAE, ICAFeatTD, IcaRoiTD
+from TDEncoder import FeatViT, ICAFeatViT, MAE, IcaRoiTD
 from MLP import MLP
 from Experiment import Experiment
 
@@ -35,7 +35,6 @@ SCHEDULES = {
 model_classes = {
     "FeatViT": FeatViT,
     "ICAFeatViT": ICAFeatViT,
-    "ICAFeatTD": ICAFeatTD,
     "IcaRoiTD": IcaRoiTD,
     "MLP": MLP,
 }
@@ -431,7 +430,7 @@ def single_test(config, config_id):
     # Model
     model_class = model_classes[config["model_class"]]
     if config["model_class"]=="FeatViT":
-        model = FeatViT(
+        model = model_class(
             num_feat=1,
             feat_dim=config['feat_dim'],
             code_dim=100,
@@ -442,10 +441,9 @@ def single_test(config, config_id):
             mlp_dim=config['mlp_dim'],
             qkv_bias=config['qkv_bias'],
             time_encoding=config['time_enc'],
-            dim_head=config['dim_head'],
             dropout=config['dropout'],
         ).to(device)
-    elif config['model_class']=="ICAFeatViT":
+    else:
         model = model_class(
             feat_dim=config['feat_dim'],
             code_dim=config['code_dim'],
@@ -458,14 +456,6 @@ def single_test(config, config_id):
             time_encoding=config['time_enc'],
             dim_head=config['dim_head'],
             dropout=config['dropout'],
-        ).to(device)
-    else:
-        model = model_class(
-            num_feat=6,
-            nod_dim=config['feat_dim'],
-            code_dim=100,
-            feat_dim=64,
-            num_classes=2
         ).to(device)
 
     model_path = os.path.join(model_dir, "best_model.pth")
@@ -591,8 +581,8 @@ def infer(config, config_id):
     # Model
     model_class = model_classes[config["model_class"]]
     if config["model_class"]=="FeatViT":
-        model = FeatViT(
-            num_feat=6,
+        model = model_class(
+            num_feat=1,
             feat_dim=config['feat_dim'],
             code_dim=100,
             num_classes=2,
@@ -602,10 +592,9 @@ def infer(config, config_id):
             mlp_dim=config['mlp_dim'],
             qkv_bias=config['qkv_bias'],
             time_encoding=config['time_enc'],
-            dim_head=config['dim_head'],
             dropout=config['dropout'],
         ).to(device)
-    elif config['model_class']=="ICAFeatViT":
+    else:
         model = model_class(
             feat_dim=config['feat_dim'],
             code_dim=config['code_dim'],
@@ -618,14 +607,6 @@ def infer(config, config_id):
             time_encoding=config['time_enc'],
             dim_head=config['dim_head'],
             dropout=config['dropout'],
-        ).to(device)
-    else:
-        model = model_class(
-            num_feat=6,
-            nod_dim=config['feat_dim'],
-            code_dim=100,
-            feat_dim=64,
-            num_classes=2
         ).to(device)
 
     # model_path = os.path.join(model_dir, "best_model.pth")

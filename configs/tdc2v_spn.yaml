@@ -1,12 +1,13 @@
+# Example of config for code2vec approach
 
 root_dir: "/lmsignatures"
-feat_dir: "/lmsignatures/data/spn/images"
-pbb_dir: "/lmsignatures/data/spn/bbox"
-labels: "/lmsignatures/data/spn/spn_signatures.csv"
-codes: "/lmsignatures/data/spn/spn_codes.csv"
-icd10_embedding: "/lmsignatures/code_embedding.json"
+feat_dir: "/lmsignatures/data/spn/images" # preprocessed images
+pbb_dir: "/lmsignatures/data/spn/bbox" # proposed nodule ROIs
+labels: "/lmsignatures/data/spn/spn_signatures.csv" # input tabular data (see README)
+codes: "/lmsignatures/data/spn/spn_codes.csv" # ICD codes (see README)
+icd10_embedding: "/lmsignatures/code_embedding.json" # ICD embedding (see README)
 pretrained_mae: null
-pretrained_model: "/lmsignatures/models/tdc2v_imageehr/best_model.pth"
+pretrained_model: "/lmsignatures/models/tdc2v_imageehr/best_model.pth" # optional
 
 dataset: 'PaddedLongC2VDataset'
 
