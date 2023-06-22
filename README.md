@@ -1,6 +1,4 @@
-# lmsignatures
-Longitudinal multimodal transformer integrating imaging and latent clinical
-signatures from routine ehrs for pulmonary nodule classification.
+# Longitudinal multimodal transformer integrating imaging and latent clinical signatures from routine ehrs for pulmonary nodule classification.
 
 [Thomas Z. Li](https://github.com/tom1193/), John M. Still, Kaiwen Xu, Ho Hin Lee, Leon Y. Cai, Aravind R. Krishnan, Riqiang Gao, Mirza S. Khan, Sanja Antic, Michael Kammer, Kim L. Sandler, Fabien Maldonado, [Bennett A. Landman](https://my.vanderbilt.edu/masi/people/bennett-landman-ph-d/), [Thomas A. Lasko](https://www.vumc.org/dbmi/person/thomas-lasko-md-phd)
 
