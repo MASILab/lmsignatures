@@ -1,8 +1,14 @@
 # lmsignatures
 Longitudinal multimodal transformer integrating imaging and latent clinical
-signatures from routine ehrs for pulmonary nodule classification. https://doi.org/10.48550/arXiv.2304.02836
+signatures from routine ehrs for pulmonary nodule classification.
 
-Please cite the preprint if you find this helpful. Disclaimer: this repo is in development and has not been packaged or robustly documented. 
+[Thomas Z. Li](https://github.com/tom1193/), John M. Still, Kaiwen Xu, Ho Hin Lee, Leon Y. Cai, Aravind R. Krishnan, Riqiang Gao, Mirza S. Khan, Sanja Antic, Michael Kammer, Kim L. Sandler, Fabien Maldonado, [Bennett A. Landman](https://my.vanderbilt.edu/masi/people/bennett-landman-ph-d/), [Thomas A. Lasko](https://www.vumc.org/dbmi/person/thomas-lasko-md-phd)
+
+Provisional accepted (top 14%) at MICCAI 2023
+
+[[arXiv](https://doi.org/10.48550/arXiv.2304.02836)]
+
+Please cite if you find this helpful. Disclaimer: this repo is in development and has not been packaged or robustly documented. 
 
 ![methods](method_fig.png)
 
@@ -11,6 +17,7 @@ Please cite the preprint if you find this helpful. Disclaimer: this repo is in d
 We use the [pipeline from Liao et al [1]]( https://github.com/lfz/DSB2017). to preprocess CT scans and propose ROIs for detected nodules. 
 
 Save preprocessed scans as `id_clean.npy` and save proposed ROIs as `id_pbb.npy`, where `id` is the session level unique identifier (UID). 
+
 
 ### Latent clinical signatures approach
 Pipeline for inferring latent clinical signatures: https://github.com/ComputationalMedicineLab/cml_data_tools
