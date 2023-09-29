@@ -123,10 +123,9 @@ class TDMaskedAttention(nn.Module):
         q, k, v = map(lambda t: rearrange(t, 'b n (h d) -> b h n d', h=self.heads), qkv)
         m = repeat(m, 'b d1 d2 -> b h d1 d2', h=self.heads) 
         qk = torch.matmul(q, k.transpose(-1, -2)) 
-        dots = (qk+m)* self.scale
-        time_scaled_dots = self.time_dist(self.relu(dots), R)
+        time_scaled_dots = self.time_dist(self.relu(qk), R)
 
-        attn = self.attend(time_scaled_dots)
+        attn = self.attend((time_scaled_dots + m)*self.scale)
 
         out = torch.matmul(attn, v)
         out = rearrange(out, 'b h n d -> b n (h d)')
